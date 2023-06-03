@@ -3,7 +3,18 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - 'master'
+      - 'dev-*'
+      - 'feat/**'
   workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+      - 'dev-*'   # covers dev-somthing, dev-hello-year
+      - 'feat/**' # covers feat/hello, feat/hello/yea   note: the double astrisk allows for slash while single does nots
+    paths-ignore:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
